@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund Recipient Monitoring Form</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --primary:#16a34a;
+    --primary-dark:#14532d;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --border:#e2e8f0;
+    --text:#0f172a;
+    --muted:#64748b;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.hero{
+    background:linear-gradient(
+        135deg,
+        #14532d,
+        #166534,
+        #15803d
+    );
+    color:white;
+    padding:50px;
+    border-radius:24px;
+    margin-bottom:30px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:35px;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+}
+
+.section-title{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:15px;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.preview-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.preview-box{
+    border:2px dashed var(--border);
+    border-radius:16px;
+    height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.preview-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:18px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:var(--primary-dark);
+}
+
+.hero-card{
+    min-width:0;
+}
+
+.hero-card h2{
+    font-size:clamp(22px,5vw,32px);
+    word-break:break-word;
+}
+
+@media(max-width:768px){
+
+.grid,
+.preview-grid{
+    grid-template-columns:1fr;
+}
+
+.hero{
+    padding:30px;
+}
+
+.hero h1{
+    font-size:30px;
+}
+}
+/* =========================
+   TABLETS
+========================= */
+
+@media (max-width: 992px){
+
+.hero-grid{
+    grid-template-columns:1fr;
+}
+
+.grid{
+    grid-template-columns:1fr 1fr;
+}
+
+.hero{
+    padding:35px;
+}
+
+.hero h1{
+    font-size:34px;
+}
+
+.container{
+    padding:20px;
+}
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:768px){
+
+.grid,
+.hero-grid{
+    grid-template-columns:1fr;
+}
+
+.hero{
+    padding:25px;
+}
+
+.hero h1{
+    font-size:28px;
+    line-height:1.2;
+}
+
+.hero p{
+    font-size:14px;
+}
+
+.card{
+    padding:20px;
+}
+
+.section-title{
+    font-size:20px;
+}
+
+.kpi-number{
+    font-size:clamp(18px,4vw,32px);
+    font-weight:800;
+    color:var(--primary);
+    word-break:break-word;
+}
+
+.chart-wrapper{
+height:350px;
+position:relative;
+}
+
+@media(max-width:768px){
+.chart-wrapper{
+    height:250px;
+}
+}
+
+.rating{
+    width:100%;
+    text-align:center;
+}
+
+}
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width:480px){
+
+body{
+    font-size:14px;
+}
+
+.container{
+    padding:15px;
+}
+
+.hero{
+    padding:20px;
+    border-radius:18px;
+}
+
+.hero h1{
+    font-size:24px;
+}
+
+.card{
+    padding:16px;
+    border-radius:16px;
+}
+
+.kpi-number{
+    font-size:18px;
+}
+
+.section-title{
+    font-size:18px;
+}
+
+.chart-wrapper{
+    height:220px;
+}
+
+input,
+select,
+textarea{
+    font-size:16px;
+    padding:12px;
+}
+
+.btn{
+    padding:15px;
+    font-size:15px;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+    <h1>Fund Recipient Monitoring Form</h1>
+    <p>Capture post-disbursement performance and generate an impact report.</p>
+</div>
+
+<form id="monitoringForm">
+
+<div class="card">
+
+<h2 class="section-title">Recipient Information</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Recipient Name</label>
+<input type="text" id="recipientName" required>
+</div>
+
+<div class="field">
+<label>Loan ID</label>
+<input type="text" id="loanId" required>
+</div>
+
+<div class="field">
+<label>Business Name</label>
+<input type="text" id="businessName" required>
+</div>
+
+<div class="field">
+<label>Business Sector</label>
+<input type="text" id="businessSector">
+</div>
+
+<div class="field full">
+<label>Location</label>
+<input type="text" id="location">
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">Loan Information</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Loan Amount Received (₦)</label>
+<input type="number" id="loanAmount" required>
+</div>
+
+<div class="field">
+<label>Date Received</label>
+<input type="date" id="dateReceived">
+</div>
+
+<div class="field">
+<label>Repayment Status</label>
+<select id="repaymentStatus">
+<option>Current</option>
+<option>Behind Schedule</option>
+<option>Completed</option>
+</select>
+</div>
+
+<div class="field">
+<label>Loan Utilization</label>
+<select id="loanUse">
+<option>Inventory Purchase</option>
+<option>Equipment Purchase</option>
+<option>Business Expansion</option>
+<option>Staff Recruitment</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">Business Performance</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Monthly Revenue Before Loan (₦)</label>
+<input type="number" id="revenueBefore">
+</div>
+
+<div class="field">
+<label>Monthly Revenue After Loan (₦)</label>
+<input type="number" id="revenueAfter">
+</div>
+
+<div class="field">
+<label>Employees Before Loan</label>
+<input type="number" id="employeesBefore">
+</div>
+
+<div class="field">
+<label>Employees After Loan</label>
+<input type="number" id="employeesAfter">
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">ESG Measurement</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Environmental Impact</label>
+<select id="environmentalImpact">
+<option value="">Select</option>
+<option>Waste Reduction Achieved</option>
+<option>Energy Efficiency Improved</option>
+<option>Sustainable Materials Used</option>
+<option>No Environmental Impact</option>
+</select>
+</div>
+
+<div class="field">
+<label>Social Impact</label>
+<select id="socialImpact">
+<option value="">Select</option>
+<option>Jobs Created</option>
+<option>Women Benefited</option>
+<option>Youth Benefited</option>
+<option>Community Members Benefited</option>
+<option>No Social Impact</option>
+</select>
+</div>
+
+<div class="field">
+<label>Governance Impact</label>
+<select id="governanceImpact">
+<option value="">Select</option>
+<option>Improved Record Keeping</option>
+<option>Formal Business Registration</option>
+<option>Improved Financial Management</option>
+<option>No Significant Impact</option>
+</select>
+</div>
+
+<div class="field">
+<label>Current Business Status</label>
+<select id="businessStatus">
+<option>Growing</option>
+<option>Stable</option>
+<option>Struggling</option>
+<option>Closed</option>
+</select>
+</div>
+</div>
+
+</div>
+
+<button type="submit" class="btn">
+Generate Impact Report
+</button>
+
+</form>
+
+</div>
+
+<script>
+document.getElementById('monitoringForm')
+.addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    const data = {
+
+    recipientName:
+    document.getElementById('recipientName').value,
+
+    loanId:
+    document.getElementById('loanId').value,
+
+    businessName:
+    document.getElementById('businessName').value,
+
+    businessSector:
+    document.getElementById('businessSector').value,
+
+    location:
+    document.getElementById('location').value,
+
+    loanAmount:
+    document.getElementById('loanAmount').value,
+
+    dateReceived:
+    document.getElementById('dateReceived').value,
+
+    repaymentStatus:
+    document.getElementById('repaymentStatus').value,
+
+    loanUse:
+    document.getElementById('loanUse').value,
+
+    revenueBefore:
+    document.getElementById('revenueBefore').value,
+
+    revenueAfter:
+    document.getElementById('revenueAfter').value,
+
+    employeesBefore:
+    document.getElementById('employeesBefore').value,
+
+    employeesAfter:
+    document.getElementById('employeesAfter').value,
+
+    environmentalImpact:
+    document.getElementById('environmentalImpact').value,
+
+    socialImpact:
+    document.getElementById('socialImpact').value,
+
+    governanceImpact:
+    document.getElementById('governanceImpact').value,
+
+    businessStatus:
+    document.getElementById('businessStatus').value,
+  };
+
+    localStorage.setItem(
+        'impactReportData',
+        JSON.stringify(data)
+    );
+
+    window.location.href = 'report.html';
+
+});
+
+</script>
+
+</body>
+</html>
